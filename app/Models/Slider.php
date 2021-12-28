@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Slider extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'image',
+    ];
+
+    public static function uploadSliderImageRule()
+    {
+        return [
+            'image'=>'required',
+        ];
+    }
 }
