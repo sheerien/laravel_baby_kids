@@ -35,7 +35,7 @@
                                 <div class="widget-content widget-content-area">
 
 
-                                <form action="{{ route('slider.store') }}" method="POST" enctype="multipart/form-data">
+                                <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">

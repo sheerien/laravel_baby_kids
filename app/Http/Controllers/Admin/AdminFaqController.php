@@ -43,7 +43,7 @@ class AdminFaqController extends Controller
         Alert::success('Success', 'Faq has been created');
 
         //redirect
-        return redirect()->bck();
+        return redirect()->back();
 
     }
     public function edit( $faqId)
@@ -60,7 +60,7 @@ class AdminFaqController extends Controller
             'answer' => $request->answer,
         ]);
         Alert::success('Success', 'Faq has been updated');
-        return redirect(route('faqs'));
+        return redirect(route('admin.faq.all'));
 
     }
     public function destroy(DeleteFaqRequest $request)

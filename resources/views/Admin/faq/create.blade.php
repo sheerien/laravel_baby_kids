@@ -35,7 +35,7 @@
                                 <div class="widget-content widget-content-area">
 
 
-                                <form action="{{ route('faq.store') }}" method="POST">
+                                <form action="{{ route('admin.faq.store') }}" method="POST">
                                     @csrf
                                     <div class="input-group mb-4">
                                         <div class="input-group-prepend">

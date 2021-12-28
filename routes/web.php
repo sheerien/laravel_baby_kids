@@ -21,20 +21,21 @@ Route::get('/', function () {
 });
 
 //admin group
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', [AdminHomeController::class, 'index'])->name('admin.index');
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [AdminHomeController::class, 'index'])->name('index');
     //Faq Route group
-    Route::group(['prefix' => 'faq'], function () {
-        Route::get('/', [AdminFaqController::class, 'index'])->name('faqs');
-        Route::get('/create', [AdminFaqController::class, 'create'])->name('faq.create');
-        Route::post('/store', [AdminFaqController::class, 'store'])->name('faq.store');
-        Route::delete('/delete', [AdminFaqController::class, 'destroy'])->name('faq.delete');
-        Route::get('/edit/{faqId}', [AdminFaqController::class, 'edit'])->name('faq.edit');
-        Route::put('/update', [AdminFaqController::class, 'update'])->name('faq.update');
+    Route::group(['prefix' => 'faq', 'as' => 'faq.'], function () {
+        Route::get('/', [AdminFaqController::class, 'index'])->name('all');
+        Route::get('/create', [AdminFaqController::class, 'create'])->name('create');
+        Route::post('/store', [AdminFaqController::class, 'store'])->name('store');
+        Route::delete('/delete', [AdminFaqController::class, 'destroy'])->name('delete');
+        Route::get('/edit/{faqId}', [AdminFaqController::class, 'edit'])->name('edit');
+        Route::put('/update', [AdminFaqController::class, 'update'])->name('update');
     });
     //Slider Route group
-    Route::group(['prefix'=> 'slider'], function (){
-        Route::get('/create', [AdminSliderController::class , 'create'])->name('slider.create');
-        Route::post('/store', [AdminSliderController::class , 'store'])->name('slider.store');
+    Route::group(['prefix'=> 'slider', 'as'=>'slider.'], function (){
+        Route::get('/', [AdminFaqController::class, 'index'])->name('all');
+        Route::get('/create', [AdminSliderController::class , 'create'])->name('create');
+        Route::post('/store', [AdminSliderController::class , 'store'])->name('store');
     });
 });
