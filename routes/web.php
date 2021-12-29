@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminFaqController;
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminSliderController;
 
@@ -20,9 +21,13 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/admin/login', [AdminAuthController::class , 'loginPage'])->name('admin.loginPage');
+Route::post('/admin/login', [AdminAuthController::class , 'login'])->name('admin.login');
 //admin group
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+    Route::post('/logout', [AdminAuthController::class , 'logout'])->name('logout');
+
     //Faq Route group
     Route::group(['prefix' => 'faq', 'as' => 'faq.'], function () {
         Route::get('/', [AdminFaqController::class, 'index'])->name('all');
@@ -32,6 +37,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/edit/{faqId}', [AdminFaqController::class, 'edit'])->name('edit');
         Route::put('/update', [AdminFaqController::class, 'update'])->name('update');
     });
+
     //Slider Route group
     Route::group(['prefix'=> 'slider', 'as'=>'slider.'], function (){
         Route::get('/', [AdminFaqController::class, 'index'])->name('all');
