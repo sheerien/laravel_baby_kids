@@ -19,4 +19,16 @@ class Slider extends Model
             'image'=>'required',
         ];
     }
+
+    public function getImageAttribute($value)
+    {
+        return 'images/slider/' . $value;
+    }
+
+    public static function deleteSliderImageRule()
+    {
+        return [
+            'slider_id' => 'required|exists:sliders,id',
+        ];
+    }
 }

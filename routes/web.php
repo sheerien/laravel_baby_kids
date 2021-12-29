@@ -40,8 +40,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
     //Slider Route group
     Route::group(['prefix'=> 'slider', 'as'=>'slider.'], function (){
-        Route::get('/', [AdminFaqController::class, 'index'])->name('all');
+        Route::get('/', [AdminSliderController::class, 'index'])->name('all');
         Route::get('/create', [AdminSliderController::class , 'create'])->name('create');
         Route::post('/store', [AdminSliderController::class , 'store'])->name('store');
+        Route::delete('/delete', [AdminSliderController::class, 'destroy'])->name('delete');
+        Route::get('/edit/{sliderId}', [AdminSliderController::class, 'edit'])->name('edit');
+        Route::put('/update', [AdminSliderController::class, 'update'])->name('update');
     });
 });

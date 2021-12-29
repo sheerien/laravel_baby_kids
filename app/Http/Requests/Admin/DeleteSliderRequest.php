@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\Faq;
+use App\Models\Slider;
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteFaqRequest extends FormRequest
+class DeleteSliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,6 +24,6 @@ class DeleteFaqRequest extends FormRequest
      */
     public function rules()
     {
-        return Faq::deleteRules();
+        return Slider::deleteSliderImageRule();
     }
 }
