@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AdminSliderController;
+use App\Http\Controllers\Admin\AdminActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
         Route::delete('/delete', [AdminSliderController::class, 'destroy'])->name('delete');
         Route::get('/edit/{sliderId}', [AdminSliderController::class, 'edit'])->name('edit');
         Route::put('/update', [AdminSliderController::class, 'update'])->name('update');
+    });
+
+    // Activity Route group
+    Route::group(['prefix' => 'activity', 'as' => 'activity.'], function () {
+        Route::get('/', [AdminActivityController::class, 'index'])->name('all');
+        Route::get('/create', [AdminActivityController::class , 'create'])->name('create');
+        Route::post('/store', [AdminActivityController::class , 'store'])->name('store');
+        Route::delete('/delete', [AdminActivityController::class, 'destroy'])->name('delete');
+        Route::get('/edit/{activityId}', [AdminActivityController::class, 'edit'])->name('edit');
+        Route::put('/update', [AdminActivityController::class, 'update'])->name('update');
     });
 });

@@ -64,7 +64,7 @@ class AdminSliderController extends Controller
         $slider->update([
             'image' => $fileName,
         ]);
-        Alert::success('Success', 'Faq has been updated');
+        Alert::success('Success', 'Slider has been updated');
         return redirect(route('admin.slider.all'));
     }
 }
