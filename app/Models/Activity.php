@@ -17,6 +17,7 @@ class Activity extends Model
         return [
             'title' => 'required|min:5',
             'slug' => 'required|min:5',
+            // notes
             'icon' => 'required'
         ];
     }

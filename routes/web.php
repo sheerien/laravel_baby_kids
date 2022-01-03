@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EndUser\HomeController;
 use App\Http\Controllers\Admin\AdminFaqController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminHomeController;
@@ -18,9 +19,8 @@ use App\Http\Controllers\Admin\AdminActivityController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/',[HomeController::class, 'index'])->name('index');
+
 
 Route::get('/admin/login', [AdminAuthController::class , 'loginPage'])->name('admin.loginPage');
 Route::post('/admin/login', [AdminAuthController::class , 'login'])->name('admin.login');

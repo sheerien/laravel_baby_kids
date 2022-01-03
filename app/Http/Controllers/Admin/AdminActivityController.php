@@ -42,8 +42,10 @@ class AdminActivityController extends Controller
     public function destroy(DeleteِActivityRequest $request)
     {
         $activity = Activity::find($request->activity_id);
-        $icon = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $activity->icon);
-        unlink(public_path($icon));
+        // dd($activity->icon);
+        // $icon = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $activity->icon);
+
+        unlink(public_path($activity->icon));
         $activity->delete();
         Alert::success('success', 'activity has been deleted');
         return redirect()->back();
@@ -59,6 +61,7 @@ class AdminActivityController extends Controller
     {
         $activity = Activity::find($request->activity_id);
         $icon = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, $activity->icon);
+        //check file name.
         $fileName = $this->uploadImage($request->icon, '_activity', 'activity',$icon);
         $activity->update([
             'title' => $request->title,
